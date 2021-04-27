@@ -1,3 +1,5 @@
+'''finding root solutions'''
+
 from sympy.solvers import solve
 from sympy import Symbol
 import numpy as np
@@ -9,7 +11,7 @@ d_range = range(0,41)
 s_range = range(0,11)
 x = Symbol('x')
 
-#solutions = np.zeros((len(k_range),len(d_range),len(s_range)))
+'''checking range for instanes of number of roots to estimate deliniations of root numbers'''
 
 for k in k_range:
     solutions = np.zeros((len(d_range), len(s_range)))
