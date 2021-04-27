@@ -2,7 +2,7 @@ import random
 import math
 import numpy
 
-def update_apathy(s,c):
+def update_apathy(s,c,k):
     #l = c+s
     l = pow(c,2)+pow(s,2)
     A_s = (k*pow(s,2))/l
@@ -29,9 +29,9 @@ def update_donations(d,u):
     return d+.1
     #return d*(1+(1-u))
 
-def run_sim(s,c,u,d):
+def run_sim(s,c,u,d,k):
 
-    A_s,A_c = update_apathy(s,c)
+    A_s,A_c = update_apathy(s,c,k)
     d = update_donations(d,u)
     P_s, P_c = update_propaganda(s,c,d)
     # d = update_donations(d,u)
@@ -49,19 +49,23 @@ def constant_opponent(s_const,c_const,u,d):
     return s_new_,u_new_
 
 
-def run(s,c,u,d):
+def run(s,c,u,d,k):
     vals = []
+    vals.append([s,c,u])
+    ds = []
+    ds.append(d)
     s_const = s
     c_const = c
-    constant_vals = []
+    #constant_vals = []
     cycles = 0
-    while cycles < 50:
-        s_const, u_const = constant_opponent(s_const,c_const,u,d)
-        constant_vals.append((s_const,u_const))
-        s,c,u,d = run_sim(s,c,u,d)
+    while cycles < 25:
+        #s_const, u_const = constant_opponent(s_const,c_const,u,d)
+        #constant_vals.append((s_const,u_const))
+        s,c,u,d = run_sim(s,c,u,d,k)
+        ds.append(d)
         vals.append([s,c,u])
         cycles +=1
-    return vals, constant_vals
+    return vals, ds #constant_vals
 
 if __name__ == '__main__':
     c = .5
@@ -70,10 +74,10 @@ if __name__ == '__main__':
     d = 3
     k = .1
 
-    vals, constant_vals = run(s,c,u,d)
+    vals, ds = run(s,c,u,d)
 
     A = numpy.array(vals)
-    B = numpy.array(constant_vals)
+    #B = numpy.array(constant_vals)
     print("done?")
 
     print("haha")
