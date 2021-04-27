@@ -25,14 +25,15 @@ def new_size(s,c,u,A_s,A_c,P_s,P_c,d):
 
     return s_new, c_new, u_new,d
 
-def update_donations(d,u):
-    return d+.1
+def update_donations(d):
+    d = d*1.03
+    return d
     #return d*(1+(1-u))
 
 def run_sim(s,c,u,d,k):
 
     A_s,A_c = update_apathy(s,c,k)
-    d = update_donations(d,u)
+    d = update_donations(d)
     P_s, P_c = update_propaganda(s,c,d)
     # d = update_donations(d,u)
 
@@ -58,7 +59,7 @@ def run(s,c,u,d,k):
     c_const = c
     #constant_vals = []
     cycles = 0
-    while cycles < 25:
+    while cycles < 30:
         #s_const, u_const = constant_opponent(s_const,c_const,u,d)
         #constant_vals.append((s_const,u_const))
         s,c,u,d = run_sim(s,c,u,d,k)
