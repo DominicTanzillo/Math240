@@ -9,7 +9,7 @@ def compete(x,s,c,u,d_o):
     plt.plot(x,c, label ="Circle Party")
     plt.plot(x, u, label="Unaffiliated Voters")
     plt.xlabel('Vote Cycle')
-    plt.ylabel('Percentage of Vote')
+    plt.ylabel('Share of Vote')
     plt.legend()
     #plt.show()
     plt.savefig("New_d_is_"+str(d_o)+"k_is"+str(k)+".png")
